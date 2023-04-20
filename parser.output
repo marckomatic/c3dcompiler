@@ -1,0 +1,378 @@
+Terminals unused in grammar
+
+    ID
+
+
+Grammar
+
+    0 $accept: listasentencias END
+
+    1 listasentencias: listasentencias sentencia
+    2                | sentencia
+
+    3 sentencia: EVALUAR PARIZQ expresionComparativa PARDER PYCOMA
+
+    4 expresionComparativa: expresionComparativa MAYOR expresion
+    5                     | expresionComparativa MENOR expresion
+    6                     | expresionComparativa MAYORIGUAL expresion
+    7                     | expresionComparativa MENORIGUAL expresion
+    8                     | expresion
+
+    9 expresion: expresion SUMA expresion2
+   10          | expresion MENOS expresion2
+   11          | expresion2
+
+   12 expresion2: expresion2 POR NUMERO
+   13           | expresion2 DIVIDIDO NUMERO
+   14           | NUMERO
+   15           | TRUE
+   16           | FALSE
+
+
+Terminals, with rules where they appear
+
+    END (0) 0
+    error (256)
+    NUMERO <std::string> (258) 12 13 14
+    ID <std::string> (259)
+    TRUE <std::string> (260) 15
+    FALSE <std::string> (261) 16
+    SUMA (262) 9
+    MENOS (263) 10
+    PARIZQ (264) 3
+    PARDER (265) 3
+    POR (266) 12
+    DIVIDIDO (267) 13
+    PYCOMA (268) 3
+    EVALUAR (269) 3
+    MAYOR (270) 4
+    MENOR (271) 5
+    MAYORIGUAL (272) 6
+    MENORIGUAL (273) 7
+
+
+Nonterminals, with rules where they appear
+
+    $accept (19)
+        on left: 0
+    listasentencias (20)
+        on left: 1 2
+        on right: 0 1
+    sentencia < Proyecto1::Sentencia > (21)
+        on left: 3
+        on right: 1 2
+    expresionComparativa < Proyecto1::Expresion* > (22)
+        on left: 4 5 6 7 8
+        on right: 3 4 5 6 7
+    expresion < Proyecto1::Expresion* > (23)
+        on left: 9 10 11
+        on right: 4 5 6 7 8 9 10
+    expresion2 < Proyecto1::Expresion* > (24)
+        on left: 12 13 14 15 16
+        on right: 9 10 11 12 13
+
+
+State 0
+
+    0 $accept: . listasentencias END
+
+    EVALUAR  shift, and go to state 1
+
+    listasentencias  go to state 2
+    sentencia        go to state 3
+
+
+State 1
+
+    3 sentencia: EVALUAR . PARIZQ expresionComparativa PARDER PYCOMA
+
+    PARIZQ  shift, and go to state 4
+
+
+State 2
+
+    0 $accept: listasentencias . END
+    1 listasentencias: listasentencias . sentencia
+
+    END      shift, and go to state 5
+    EVALUAR  shift, and go to state 1
+
+    sentencia  go to state 6
+
+
+State 3
+
+    2 listasentencias: sentencia .
+
+    $default  reduce using rule 2 (listasentencias)
+
+
+State 4
+
+    3 sentencia: EVALUAR PARIZQ . expresionComparativa PARDER PYCOMA
+
+    NUMERO  shift, and go to state 7
+    TRUE    shift, and go to state 8
+    FALSE   shift, and go to state 9
+
+    expresionComparativa  go to state 10
+    expresion             go to state 11
+    expresion2            go to state 12
+
+
+State 5
+
+    0 $accept: listasentencias END .
+
+    $default  accept
+
+
+State 6
+
+    1 listasentencias: listasentencias sentencia .
+
+    $default  reduce using rule 1 (listasentencias)
+
+
+State 7
+
+   14 expresion2: NUMERO .
+
+    $default  reduce using rule 14 (expresion2)
+
+
+State 8
+
+   15 expresion2: TRUE .
+
+    $default  reduce using rule 15 (expresion2)
+
+
+State 9
+
+   16 expresion2: FALSE .
+
+    $default  reduce using rule 16 (expresion2)
+
+
+State 10
+
+    3 sentencia: EVALUAR PARIZQ expresionComparativa . PARDER PYCOMA
+    4 expresionComparativa: expresionComparativa . MAYOR expresion
+    5                     | expresionComparativa . MENOR expresion
+    6                     | expresionComparativa . MAYORIGUAL expresion
+    7                     | expresionComparativa . MENORIGUAL expresion
+
+    PARDER      shift, and go to state 13
+    MAYOR       shift, and go to state 14
+    MENOR       shift, and go to state 15
+    MAYORIGUAL  shift, and go to state 16
+    MENORIGUAL  shift, and go to state 17
+
+
+State 11
+
+    8 expresionComparativa: expresion .
+    9 expresion: expresion . SUMA expresion2
+   10          | expresion . MENOS expresion2
+
+    SUMA   shift, and go to state 18
+    MENOS  shift, and go to state 19
+
+    $default  reduce using rule 8 (expresionComparativa)
+
+
+State 12
+
+   11 expresion: expresion2 .
+   12 expresion2: expresion2 . POR NUMERO
+   13           | expresion2 . DIVIDIDO NUMERO
+
+    POR       shift, and go to state 20
+    DIVIDIDO  shift, and go to state 21
+
+    $default  reduce using rule 11 (expresion)
+
+
+State 13
+
+    3 sentencia: EVALUAR PARIZQ expresionComparativa PARDER . PYCOMA
+
+    PYCOMA  shift, and go to state 22
+
+
+State 14
+
+    4 expresionComparativa: expresionComparativa MAYOR . expresion
+
+    NUMERO  shift, and go to state 7
+    TRUE    shift, and go to state 8
+    FALSE   shift, and go to state 9
+
+    expresion   go to state 23
+    expresion2  go to state 12
+
+
+State 15
+
+    5 expresionComparativa: expresionComparativa MENOR . expresion
+
+    NUMERO  shift, and go to state 7
+    TRUE    shift, and go to state 8
+    FALSE   shift, and go to state 9
+
+    expresion   go to state 24
+    expresion2  go to state 12
+
+
+State 16
+
+    6 expresionComparativa: expresionComparativa MAYORIGUAL . expresion
+
+    NUMERO  shift, and go to state 7
+    TRUE    shift, and go to state 8
+    FALSE   shift, and go to state 9
+
+    expresion   go to state 25
+    expresion2  go to state 12
+
+
+State 17
+
+    7 expresionComparativa: expresionComparativa MENORIGUAL . expresion
+
+    NUMERO  shift, and go to state 7
+    TRUE    shift, and go to state 8
+    FALSE   shift, and go to state 9
+
+    expresion   go to state 26
+    expresion2  go to state 12
+
+
+State 18
+
+    9 expresion: expresion SUMA . expresion2
+
+    NUMERO  shift, and go to state 7
+    TRUE    shift, and go to state 8
+    FALSE   shift, and go to state 9
+
+    expresion2  go to state 27
+
+
+State 19
+
+   10 expresion: expresion MENOS . expresion2
+
+    NUMERO  shift, and go to state 7
+    TRUE    shift, and go to state 8
+    FALSE   shift, and go to state 9
+
+    expresion2  go to state 28
+
+
+State 20
+
+   12 expresion2: expresion2 POR . NUMERO
+
+    NUMERO  shift, and go to state 29
+
+
+State 21
+
+   13 expresion2: expresion2 DIVIDIDO . NUMERO
+
+    NUMERO  shift, and go to state 30
+
+
+State 22
+
+    3 sentencia: EVALUAR PARIZQ expresionComparativa PARDER PYCOMA .
+
+    $default  reduce using rule 3 (sentencia)
+
+
+State 23
+
+    4 expresionComparativa: expresionComparativa MAYOR expresion .
+    9 expresion: expresion . SUMA expresion2
+   10          | expresion . MENOS expresion2
+
+    SUMA   shift, and go to state 18
+    MENOS  shift, and go to state 19
+
+    $default  reduce using rule 4 (expresionComparativa)
+
+
+State 24
+
+    5 expresionComparativa: expresionComparativa MENOR expresion .
+    9 expresion: expresion . SUMA expresion2
+   10          | expresion . MENOS expresion2
+
+    SUMA   shift, and go to state 18
+    MENOS  shift, and go to state 19
+
+    $default  reduce using rule 5 (expresionComparativa)
+
+
+State 25
+
+    6 expresionComparativa: expresionComparativa MAYORIGUAL expresion .
+    9 expresion: expresion . SUMA expresion2
+   10          | expresion . MENOS expresion2
+
+    SUMA   shift, and go to state 18
+    MENOS  shift, and go to state 19
+
+    $default  reduce using rule 6 (expresionComparativa)
+
+
+State 26
+
+    7 expresionComparativa: expresionComparativa MENORIGUAL expresion .
+    9 expresion: expresion . SUMA expresion2
+   10          | expresion . MENOS expresion2
+
+    SUMA   shift, and go to state 18
+    MENOS  shift, and go to state 19
+
+    $default  reduce using rule 7 (expresionComparativa)
+
+
+State 27
+
+    9 expresion: expresion SUMA expresion2 .
+   12 expresion2: expresion2 . POR NUMERO
+   13           | expresion2 . DIVIDIDO NUMERO
+
+    POR       shift, and go to state 20
+    DIVIDIDO  shift, and go to state 21
+
+    $default  reduce using rule 9 (expresion)
+
+
+State 28
+
+   10 expresion: expresion MENOS expresion2 .
+   12 expresion2: expresion2 . POR NUMERO
+   13           | expresion2 . DIVIDIDO NUMERO
+
+    POR       shift, and go to state 20
+    DIVIDIDO  shift, and go to state 21
+
+    $default  reduce using rule 10 (expresion)
+
+
+State 29
+
+   12 expresion2: expresion2 POR NUMERO .
+
+    $default  reduce using rule 12 (expresion2)
+
+
+State 30
+
+   13 expresion2: expresion2 DIVIDIDO NUMERO .
+
+    $default  reduce using rule 13 (expresion2)
