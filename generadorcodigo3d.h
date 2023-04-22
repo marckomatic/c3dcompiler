@@ -20,6 +20,9 @@ public:
     string asignar(string direccionResultado, string valor);
     string generarIf(string temporalIzquierda, string temporalDerecha, string operador, string etiquetaDestino);
     string generarGoto(string etiquetaDestino);
+    string generarObtenerDeStack(string destino, string posicionARecuperar);
+    string generarObtenerDeHeap(string destino, string posicionARecuperar);
+    string generarPrintCadena();
 
 };
 }

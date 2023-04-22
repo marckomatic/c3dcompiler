@@ -18,7 +18,7 @@ AST* AST::getAST(){
 
 void AST::ejecutar(){
     this->salida = "#include <stdio.h>\n double heap[100000];\n double stack[100000];\n double P;\n double H;\n double ";
-
+    this->salida += this->generadorCodigo.generarPrintCadena() + "\n\n";
     for(int i=0; i<this->generadorCodigo.contadorTemporales; i++){
         this->salida += "t" + i;
         if(i < this->generadorCodigo.contadorTemporales - 2){
